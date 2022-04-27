@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <title>AJAX with JavaScript</title>
+  <script>
+      var xhr = new XMLHttpRequest();
+      //a function that runs every time there is a change in the state of the ajax request
+      xhr.onreadystatechange = function (){
+          // xhr.readyState === 4 means that if state of the site is done, 4, then do document.getElementById('ajax')
+        if(xhr.readyState === 4){
+           document.getElementById('ajax').innerHTML = xhr.responseText;//returns the text received from a server following a request being sent 
+        }
+      };
+      xhr.open('GET', 'sidebar.html');
+      function sendAJAX(){
+          xhr.send();
+          document.getElementById('load').style.display = 'none';
+      }
+      
+  </script>
+</head>
+<body>
+  <div class="grid-container centered">
+    <div class="grid-100">
+      <div class="contained">
+        <div class="grid-100">
+          <div class="heading">
+            <h1>Bring on the AJAX</h1>
+            <button id="load" onclick="sendAJAX()">Bring it!</button>
+          </div>
+          <div id="ajax">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
