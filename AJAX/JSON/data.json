@@ -1,0 +1,15 @@
+//in json, you can us an array or an object 
+//OBJECT
+// {
+//     "name": "Jim",
+//     "phone": "503-555-1212"
+// }
+//array with an object
+[
+    {
+        "name": "emily",
+        "height": "5'6''",
+        "inoffice": true
+    },
+    {}
+]
