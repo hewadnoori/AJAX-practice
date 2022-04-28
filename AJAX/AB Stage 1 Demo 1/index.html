@@ -6,16 +6,29 @@
   <link rel="stylesheet" href="css/main.css">
   <title>AJAX with JavaScript</title>
   <script>
+    //here we make the XMLHTTP request object, this is the first step, aka the readystate 0
       var xhr = new XMLHttpRequest();
-      //a function that runs every time there is a change in the state of the ajax request
+      //a function that runs every time there is a change in the state of the ajax request, this is a callback function, 2nd step, aka the readystate 1
       xhr.onreadystatechange = function (){
           // xhr.readyState === 4 means that if state of the site is done, 4, then do document.getElementById('ajax')
-        if(xhr.readyState === 4){
-           document.getElementById('ajax').innerHTML = xhr.responseText;//returns the text received from a server following a request being sent 
+        if(xhr.readyState === 4){//tests to make sure the server has sent back its complete response.
+          if(xhr.status === 200){//the status property is a number sent from the server, 200 is a successful http request,  401 means that you need a password or dont have permission to acess this site,
+            document.getElementById('ajax').innerHTML = xhr.responseText;//returns the text received from a server following a request being sent 
+          }else{
+            alert(xhr.statusText); //this will show alert of the error message.
+          }
+          //  else if (xhr.status === 404){
+          //     //404 is file not found,
+          // } else if (xhr.status === 500){
+          //     //500 means the server has some kind of error.
+          // }
+          
         }
       };
+      //here we open the request, this is the third step, aka the readystate 2
       xhr.open('GET', 'sidebar.html');
       function sendAJAX(){
+        //here we send the request, this is the 4th and final step of the ajax process., aka the readystate 3
           xhr.send();
           document.getElementById('load').style.display = 'none';
       }
